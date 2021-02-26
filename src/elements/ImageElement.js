@@ -142,6 +142,10 @@ export default class ImageElement extends DocElement {
             this.imageRatio = 0;
             this.updateDisplay();
         }
+        // trigger optional callback
+        if (this.rb.properties.setImageCallback) {
+            this.rb.properties.setImageCallback(this);
+        }
     }
 
     updateName() {

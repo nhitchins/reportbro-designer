@@ -56,6 +56,7 @@ export default class ReportBro {
             menuSidebar: false,
             saveCallback: null,
             selectCallback: null,
+            setImageCallback: null,
             showGrid: true,
             patternAdditionalDates: [],
             patternAdditionalNumbers: [],

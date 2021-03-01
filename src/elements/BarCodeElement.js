@@ -85,7 +85,7 @@ export default class BarCodeElement extends DocElement {
         let valid = false;
         let options = { format: this.format, height: this.displayValue ? (this.heightVal - 22) : this.heightVal,
                 margin: 0, displayValue: this.displayValue };
-        if (this.content !== '' && this.content.indexOf('${') === -1) {
+        if (this.content !== '' && this.content.indexOf(this.rb.properties.parameterTag.open) === -1) {
             try {
                 this.elBarCode.JsBarcode(this.content, options);
                 valid = true;

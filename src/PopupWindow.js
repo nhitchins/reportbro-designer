@@ -113,13 +113,13 @@ export default class PopupWindow {
                             this.input.trigger('input');
                             this.hide();
                         } else if (type === PopupWindow.type.parameterSet) {
-                            let paramText = '${' + item.name + '}';
+                            let paramText = this.rb.properties.parameterTag.open + item.name + this.rb.properties.parameterTag.close;
                             this.input.val(paramText);
                             this.input.trigger('input');
                             autosize.update(this.input);
                             this.hide();
                         } else if (type === PopupWindow.type.parameterAppend) {
-                            let paramText = '${' + item.name + '}';
+                            let paramText = this.rb.properties.parameterTag.open + item.name + this.rb.properties.parameterTag.close;
                             utils.insertAtCaret(this.input.get(0), paramText);
                             autosize.update(this.input);
                             this.input.trigger('input');

@@ -819,22 +819,21 @@ export default class DocElement {
         let newParamRef = null;
         
         this.getAllDataSources(dataSources, null);
-
         if (paramParent !== null && paramParent.getValue('type') === Parameter.type.array) {
             for (let dataSource of dataSources) {
                 if (dataSource.parameters.indexOf(parameter) !== -1) {
-                    paramRef = '${' + parameter.getName() + '}';
-                    newParamRef = '${' + newParameterName + '}';
+                    paramRef = this.rb.properties.parameterTag.open + parameter.getName() + this.rb.properties.parameterTag.close;
+                    newParamRef = this.rb.properties.parameterTag.open + newParameterName + this.rb.properties.parameterTag.close;
                     break;
                 }
             }
         } else {
             if (paramParent !== null && paramParent.getValue('type') === Parameter.type.map) {
-                paramRef = '${' + paramParent.getName() + '.' + parameter.getName() + '}';
-                newParamRef = '${' + paramParent.getName() + '.' + newParameterName + '}';
+                paramRef = this.rb.properties.parameterTag.open + paramParent.getName() + '.' + parameter.getName() + this.rb.properties.parameterTag.close;
+                newParamRef = this.rb.properties.parameterTag.open + paramParent.getName() + '.' + newParameterName + this.rb.properties.parameterTag.close;
             } else if (parameter.getValue('type') === Parameter.type.map) {
-                paramRef = '${' + parameter.getName() + '.';
-                newParamRef = '${' + newParameterName + '.';
+                paramRef = this.rb.properties.parameterTag.open + parameter.getName() + '.';
+                newParamRef = this.rb.properties.parameterTag.open + newParameterName + '.';
             } else {
                 let isDataSourceParam = false;
                 for (let dataSource of dataSources) {
@@ -848,8 +847,8 @@ export default class DocElement {
                     }
                 }
                 if (!isDataSourceParam) {
-                    paramRef = '${' + parameter.getName() + '}';
-                    newParamRef = '${' + newParameterName + '}';
+                    paramRef = this.rb.properties.parameterTag.open + parameter.getName() + this.rb.properties.parameterTag.close;
+                    newParamRef = this.rb.properties.parameterTag.open + newParameterName + this.rb.properties.parameterTag.close;
                 }
             }
         }

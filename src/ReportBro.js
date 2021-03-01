@@ -58,6 +58,10 @@ export default class ReportBro {
             selectCallback: null,
             setImageCallback: null,
             showGrid: true,
+            parameterTag: {
+                open: '${',
+                close: '}'
+            },
             patternAdditionalDates: [],
             patternAdditionalNumbers: [],
             patternCurrencySymbol: '$',

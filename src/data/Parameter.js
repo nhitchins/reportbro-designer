@@ -195,16 +195,16 @@ export default class Parameter {
     addCommandForChangedParameterName(parameter, newParameterName, field, cmdGroup) {
         let paramParent = parameter.getParent();
         let paramRef = null;
-        let newParamRef = null;
+        let newParamRef = null; 
         if (paramParent !== null && paramParent.getValue('type') === Parameter.type.map) {
-            paramRef = '${' + paramParent.getName() + '.' + parameter.getName() + '}';
-            newParamRef = '${' + paramParent.getName() + '.' + newParameterName + '}';
+            paramRef = this.rb.properties.parameterTag.open + paramParent.getName() + '.' + parameter.getName() + this.rb.properties.parameterTag.close;
+            newParamRef = this.rb.properties.parameterTag.open + paramParent.getName() + '.' + newParameterName + this.rb.properties.parameterTag.close;
         } else if (parameter.getValue('type') === Parameter.type.map) {
-            paramRef = '${' + parameter.getName() + '.';
-            newParamRef = '${' + newParameterName + '.';
+            paramRef = this.rb.properties.parameterTag.open + parameter.getName() + '.';
+            newParamRef = this.rb.properties.parameterTag.open + newParameterName + '.';
         } else {
-            paramRef = '${' + parameter.getName() + '}';
-            newParamRef = '${' + newParameterName + '}';
+            paramRef = this.rb.properties.parameterTag.open + parameter.getName() + this.rb.properties.parameterTag.close;
+            newParamRef = this.rb.properties.parameterTag.open + newParameterName + this.rb.properties.parameterTag.close;
         }
 
         if (paramRef !== null && newParamRef !== null && this.getValue(field).indexOf(paramRef) !== -1) {

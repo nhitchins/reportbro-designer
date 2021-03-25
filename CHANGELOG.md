@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.6.0] - 2021-03-19
+
+### Features
+* zoom buttons for document panel
+
+### Changes
+* add parameter to cmdExecutedCallback which indicates if command was done or undone
+* add "copy" suffix to name of pasted parameter and style for unique names
+* only update parameter references on name change if the parameter name is unique
+* Allow starting area selection inside container (frame/section) and
+  do not include container element in area selection
+
+### Bug Fixes
+* set correct cell height when table is created/updated
+
 ## [1.5.2] - 2020-10-06
 
 ### Changes

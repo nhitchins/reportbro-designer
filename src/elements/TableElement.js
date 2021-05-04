@@ -379,14 +379,26 @@ export default class TableElement extends DocElement {
         let parameters = [];
         let dataSource = this.dataSource.trim();
         let dataSourceParameter = '';
-        if (dataSource.length >= 3 && dataSource.substr(0, 2) === this.rb.properties.parameterTag.open &&
-                dataSource.charAt(dataSource.length - 1) === this.rb.properties.parameterTag.close) {
-            dataSourceParameter = dataSource.substring(2, dataSource.length - 1);
+
+        let paramRegex = new RegExp(this.rb.properties.parameterTag.open + "(.+?)" + this.rb.properties.parameterTag.close);
+        let paramMatch = dataSource.match(paramRegex);
+        if (paramMatch) {
+            dataSourceParameter = paramMatch[1];
             let param = this.rb.getParameterByName(dataSourceParameter);
             if (param !== null && param.getValue('type') === Parameter.type.array) {
                 parameters = param.getChildren();
             }
         }
+        // if (dataSource.length >= 3 && dataSource.substr(0, 2) === this.rb.properties.parameterTag.open &&
+        //         dataSource.charAt(dataSource.length - 1) === this.rb.properties.parameterTag.close) {
+        //     dataSourceParameter = dataSource.substring(2, dataSource.length - 1);
+        //     console.log("dataSourceParameter", dataSourceParameter)
+        //     let param = this.rb.getParameterByName(dataSourceParameter);
+        //     console.log("param", param)
+        //     if (param !== null && param.getValue('type') === Parameter.type.array) {
+        //         parameters = param.getChildren();
+        //     }
+        // }
         return { name: dataSourceParameter, parameters: parameters };
     }
 
